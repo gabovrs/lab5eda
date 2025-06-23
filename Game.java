@@ -15,43 +15,36 @@ public class Game {
         this.connectFour = new ConnectFour();
     }
 
-    public void play() {
+    public String play() {
         Scanner scanner = new Scanner(System.in);
-        String currentPlayer = playerNameA; // El jugador A inicia
+        String currentPlayer = playerNameA;
         while (!status.equals("VICTORY") && !status.equals("DRAW")) {
-            // Imprimir el estado actual del tablero
             connectFour.printGrid();
             System.out.println("Es turno de " + currentPlayer + ". Ingresa la columna (0-6):");
 
             int col = scanner.nextInt();
 
-            // Verificar si el movimiento es válido
             if (connectFour.makeMove(col)) {
-                // Verificar si el juego ha terminado después del movimiento
                 if (connectFour.isGameOver()) {
                     if (connectFour.checkWinner()) {
-                        status = "VICTORY"; // Hay un ganador
-                        winnerPlayerName = currentPlayer; // Guardamos el nombre del ganador
+                        status = "VICTORY";
+                        winnerPlayerName = currentPlayer;
                     } else {
-                        status = "DRAW"; // Empate
+                        status = "DRAW";
                     }
                 }
-                // Alternar el turno entre los jugadores
                 currentPlayer = (currentPlayer.equals(playerNameA)) ? playerNameB : playerNameA;
             } else {
                 System.out.println("Movimiento inválido. Intenta de nuevo.");
             }
         }
 
-        // Imprimir el tablero final
         connectFour.printGrid();
-        // Imprimir el resultado
         if (status.equals("VICTORY")) {
-            System.out.println("¡Felicidades " + winnerPlayerName + ", ganaste!");
+            System.out.println("Felicidades " + winnerPlayerName + ", ganaste");
         } else {
-            System.out.println("¡Empate! No hay más movimientos posibles.");
+            System.out.println("Empate. No hay más movimientos posibles.");
         }
-        // Cerrar el escáner
-        scanner.close();
+        return winnerPlayerName;
     }
 }

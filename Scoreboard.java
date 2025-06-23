@@ -68,4 +68,18 @@ public class Scoreboard {
         System.arraycopy(result, 0, trimmedResult, 0, index);
         return trimmedResult;
     }
+
+    public void printScoreboard() {
+        System.out.println("Scoreboard:");
+        System.out.println("Player\tWins\tDraws\tLosses\tWin Rate");
+        for (Player player : players.values()) {
+            System.out.printf("%s\t%d\t%d\t%d\t%d%%\n", 
+                player.playerName, 
+                player.wins, 
+                player.draws, 
+                player.losses, 
+                player.winRate());
+        }
+        System.out.println("Total games played: " + playedGames);
+    }
 }
