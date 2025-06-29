@@ -71,7 +71,7 @@ public class Scoreboard {
 
     public void printScoreboard() {
         System.out.println("Scoreboard:");
-        System.out.println("Player\tWins\tDraws\tLosses\tWin Rate");
+        System.out.println("Jugador\tV\tE\tP\t% V");
         for (Player player : players.values()) {
             System.out.printf("%s\t%d\t%d\t%d\t%d%%\n", 
                 player.playerName, 
@@ -80,6 +80,6 @@ public class Scoreboard {
                 player.losses, 
                 player.winRate());
         }
-        System.out.println("Total games played: " + playedGames);
+        System.out.println("Total de juegos jugados: " + playedGames);
     }
 }
